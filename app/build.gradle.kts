@@ -4,15 +4,15 @@ plugins {
     alias(libs.plugins.compose.compiler)
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
-    id("com.google.gms.google-services")
+    id("kotlinx-serialization")
 }
 
 android {
-    namespace = "com.example.messenger"
+    namespace = "com.example.course"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.messenger"
+        applicationId = "com.example.course"
         minSdk = 24
         targetSdk = 35
         versionCode = 1
@@ -69,14 +69,14 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    //serializable
+    implementation(libs.kotlinx.serialization.json)
     //navigation compose
     implementation(libs.androidx.navigation.compose)
-    //firebase
-    implementation(platform("com.google.firebase:firebase-bom:33.10.0"))
-    implementation("com.google.firebase:firebase-analytics")
     //net
     implementation(libs.logging.interceptor)
     implementation(libs.okhttp)
+    implementation(libs.androidx.core.splashscreen)
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.moshi)
@@ -87,9 +87,12 @@ dependencies {
     implementation(libs.androidx.hilt.navigation.compose)
     implementation ("com.google.dagger:hilt-android:2.55")
     ksp("com.google.dagger:hilt-compiler:2.55")
+    //Room
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
     //Glide
     implementation(libs.glide)
     ksp(libs.compiler)
     implementation (libs.compose)
-    implementation(libs.core.splashscreen)
 }
